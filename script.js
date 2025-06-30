@@ -335,10 +335,18 @@ function showModal(data, functionKey) {
         document.getElementById(`validation${i+1}`).textContent = data.validations[i];
     }
     
-    // Show modal and first step
+    // Reset modal state first
+    modal.style.opacity = '0';
     modal.style.display = 'block';
-    showStep(1);
     document.body.style.overflow = 'hidden';
+    
+    // Show first step
+    showStep(1);
+    
+    // Fade in modal
+    setTimeout(() => {
+        modal.style.opacity = '1';
+    }, 10);
 }
 
 // Function to show specific step
@@ -376,9 +384,18 @@ function closeModal() {
     setTimeout(() => {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
+        
         // Reset to first step for next time
         currentStep = 1;
-        showStep(1);
+        currentFunctionKey = '';
+        
+        // Reset all steps
+        document.querySelectorAll('.modal-step').forEach(step => {
+            step.classList.remove('active');
+        });
+        
+        // Clear any potential lingering states
+        modal.style.opacity = '';
     }, 300);
 }
 
@@ -391,8 +408,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const functionKey = this.getAttribute('data-function');
             const data = functionData[functionKey];
             
+            console.log('Card clicked:', functionKey, 'Modal display:', modal.style.display);
+            
             if (data) {
                 showModal(data, functionKey);
+            } else {
+                console.error('No data found for function:', functionKey);
             }
         });
         
@@ -408,6 +429,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Modal close handlers
     closeBtn.addEventListener('click', closeModal);
+    
+    // Additional click handler using event delegation as fallback
+    document.addEventListener('click', function(event) {
+        // Check if clicked element or its parent has function-card class
+        const functionCard = event.target.closest('.function-card');
+        if (functionCard) {
+            const functionKey = functionCard.getAttribute('data-function');
+            const data = functionData[functionKey];
+            
+            console.log('Fallback handler - Card clicked:', functionKey);
+            
+            if (data && !event.defaultPrevented) {
+                event.preventDefault();
+                showModal(data, functionKey);
+            }
+        }
+    });
     
     window.addEventListener('click', function(event) {
         if (event.target === modal) {
