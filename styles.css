@@ -1,0 +1,437 @@
+/* CSS Variables for Color Palette */
+:root {
+    --light-blue: rgb(148, 191, 221);
+    --sky-blue: rgb(151, 186, 218);
+    --steel-blue: rgb(149, 189, 220);
+    --soft-blue: rgb(146, 194, 222);
+    --ocean-blue: rgb(150, 187, 219);
+    --dark-text: #333333;
+    --white: #ffffff;
+    --dark-blue: #1e3a8a;
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--dark-text);
+    background: var(--white);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+.header {
+    text-align: center;
+    background: var(--white);
+    padding: 30px 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark-blue);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--dark-text);
+    font-weight: 400;
+}
+
+/* Flow Container */
+.flow-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Information Bubble */
+.info-bubble {
+    background: var(--light-blue);
+    color: var(--white);
+    padding: 15px 25px;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Function Cards */
+.function-card {
+    background: var(--white);
+    border: 2px solid var(--steel-blue);
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    height: 120px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.function-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    border-color: var(--soft-blue);
+}
+
+.function-number {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    background: var(--dark-blue);
+    color: var(--white);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.function-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark-blue);
+    margin-bottom: 8px;
+    margin-top: 10px;
+}
+
+.function-card p {
+    font-size: 0.9rem;
+    color: var(--dark-text);
+    font-weight: 400;
+}
+
+/* Arrows */
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 20px solid var(--soft-blue);
+    margin: 10px auto;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--dark-blue);
+    color: var(--white);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 3% auto;
+    padding: 0;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: var(--dark-text);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 1001;
+}
+
+.close:hover {
+    color: var(--dark-blue);
+}
+
+#modalTitle {
+    color: var(--dark-blue);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 20px 60px 20px 30px;
+    border-bottom: 2px solid var(--light-blue);
+    background: var(--light-blue);
+    color: var(--white);
+    border-radius: 15px 15px 0 0;
+}
+
+/* Modal Steps */
+.modal-step {
+    display: none;
+    padding: 30px;
+}
+
+.modal-step.active {
+    display: block;
+}
+
+.step-header {
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: var(--light-blue);
+    border-radius: 10px;
+    color: var(--white);
+}
+
+.step-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.step-content p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.step-content strong {
+    color: var(--dark-blue);
+}
+
+/* Prompt Boxes */
+.prompt-box {
+    background: #f8f9fa;
+    border: 2px solid var(--steel-blue);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+/* Validation Section */
+.validation-section {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f0f8f0;
+    border-radius: 8px;
+    border: 1px solid #4caf50;
+}
+
+.validation-list {
+    margin-top: 10px;
+}
+
+.validation-item {
+    color: #2e7d2e;
+    margin: 8px 0;
+    font-weight: 500;
+}
+
+/* Step Navigation */
+.step-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+.nav-btn {
+    background: var(--dark-blue);
+    color: var(--white);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(30, 58, 138, 0.3);
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(30, 58, 138, 0.4);
+}
+
+.nav-btn.prev-btn {
+    background: var(--steel-blue);
+}
+
+.nav-btn.restart-btn {
+    background: var(--soft-blue);
+}
+
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Single navigation button centering */
+.step-navigation:has(.nav-btn:only-child) {
+    justify-content: center;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .info-bubble {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .function-card {
+        width: 100%;
+        max-width: 350px;
+        height: 110px;
+    }
+    
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .modal-content {
+        margin: 5% auto;
+        padding: 0;
+        width: 95%;
+        max-height: 90vh;
+    }
+    
+    .modal-step {
+        padding: 20px;
+    }
+    
+    #modalTitle {
+        font-size: 1.3rem;
+        padding: 15px 50px 15px 20px;
+    }
+    
+    .step-header h3 {
+        font-size: 1rem;
+    }
+    
+    .prompt-box {
+        padding: 15px;
+        margin: 10px 0;
+    }
+    
+    .nav-btn {
+        padding: 10px 15px;
+        font-size: 0.8rem;
+    }
+    
+    .step-navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .step-navigation .nav-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 20px 15px;
+    }
+    
+    .header h1 {
+        font-size: 1.7rem;
+    }
+    
+    .info-bubble {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+    }
+    
+    .function-card {
+        padding: 15px;
+        height: 100px;
+    }
+    
+    .function-card h3 {
+        font-size: 0.95rem;
+    }
+    
+    .function-card p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Animation for smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
