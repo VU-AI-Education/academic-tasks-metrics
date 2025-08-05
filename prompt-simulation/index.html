@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompt Simulation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Starting Screen -->
+    <div class="screen" id="startScreen">
+        <div class="copilot-start-container">
+            <!-- Microsoft Header -->
+            <div class="microsoft-header">
+                <div class="microsoft-logo">
+                    <div class="logo-squares">
+                        <div class="square red"></div>
+                        <div class="square green"></div>
+                        <div class="square blue"></div>
+                        <div class="square yellow"></div>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn">🔗</button>
+                    <button class="header-btn">😊</button>
+                    <button class="header-btn">⋯</button>
+                    <button class="header-btn">⊞</button>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="start-content">
+                <!-- Centered Greeting -->
+                <div class="greeting-section">
+                    <h1 class="greeting-text">Hi, how can I help?</h1>
+                </div>
+
+                <!-- Message Input Area -->
+                <div class="message-input-section">
+                    <div class="message-input-container">
+                        <button class="attach-btn">+</button>
+                        <div class="input-placeholder">Message Copilot</div>
+                        <button class="voice-btn">🎤</button>
+                    </div>
+                </div>
+
+                <!-- Suggestion Cards -->
+                <div class="suggestions-grid">
+                    <div class="suggestion-card" data-intent="spark">
+                        <div class="suggestion-icon">✏️</div>
+                        <div class="suggestion-text">
+                            <div class="suggestion-title">Spark new ideas</div>
+                            <div class="suggestion-subtitle">Get creative inspiration</div>
+                        </div>
+                    </div>
+                    
+                    <div class="suggestion-card" data-intent="shape">
+                        <div class="suggestion-icon">✏️</div>
+                        <div class="suggestion-text">
+                            <div class="suggestion-title">Shape my thoughts</div>
+                            <div class="suggestion-subtitle">Organize and refine</div>
+                        </div>
+                    </div>
+                    
+                    <div class="suggestion-card" data-intent="verify">
+                        <div class="suggestion-icon">🌐</div>
+                        <div class="suggestion-text">
+                            <div class="suggestion-title">Verify facts</div>
+                            <div class="suggestion-subtitle">Check accuracy</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- See More Link -->
+                <div class="see-more">
+                    <a href="#" class="see-more-link">See more ⌄</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conversation Simulation Screen -->
+    <div class="screen" id="conversationScreen" style="display: none;">
+        <div class="simulation-container">
+            <!-- Left Side: Conversation -->
+            <div class="conversation-panel">
+                <!-- Copilot Header -->
+                <div class="copilot-header">
+                    <button class="back-button" id="backButton">← Back</button>
+                    <div class="copilot-title">
+                        <div class="copilot-icon">🤖</div>
+                        <div class="copilot-name">Copilot</div>
+                        <div class="copilot-subtitle">I'm researching AI in education. Generate 10 creat...</div>
+                    </div>
+                </div>
+                
+                <div class="conversation-content">
+                    <!-- Today Section -->
+                    <div class="today-section">
+                        <div class="today-label">Today</div>
+                    </div>
+                    
+                    <!-- User Message -->
+                    <div class="message user-message">
+                        <div class="message-bubble user-bubble">
+                            <div id="userPrompt" class="user-prompt">
+                                <!-- Prompt will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AI Response -->
+                    <div class="message ai-message">
+                        <div class="copilot-response-header">
+                            <div class="copilot-badge">
+                                <span class="copilot-logo">🤖</span>
+                                <span class="copilot-label">Copilot</span>
+                                <span class="info-icon">ℹ️</span>
+                            </div>
+                        </div>
+                        <div class="ai-response-content">
+                            <div id="aiResponse" class="ai-response">
+                                <!-- Response will be inserted here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="response-actions">
+                            <button class="action-button" title="Develop a proposal for question 5">Develop a proposal for question 5</button>
+                            <button class="action-button" title="Outline a literature review for question 10">Outline a literature review for question 10</button>
+                            <button class="copy-button" title="Copy">📋</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Message Input -->
+                    <div class="message-input-area">
+                        <div class="message-input-container">
+                            <button class="attach-btn">+</button>
+                            <div class="input-placeholder">Message Copilot</div>
+                            <button class="voice-btn">🎤</button>
+                        </div>
+                        <div class="disclaimer">AI-generated content may be incorrect</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Side: Enhancement Options -->
+            <div class="enhancement-panel">
+                <h3>Enhance Your Prompt</h3>
+                <p class="enhancement-subtitle">See how different improvements affect the AI response</p>
+                
+                <div class="enhancement-options">
+                    <div class="enhancement-option" data-enhancement="specificity">
+                        <div class="enhancement-header">
+                            <div class="enhancement-icon">🎯</div>
+                            <div class="enhancement-title">Add Specificity</div>
+                        </div>
+                        <p class="enhancement-description">Make your request more detailed and precise</p>
+                        <button class="try-enhancement-btn">Try This Enhancement</button>
+                    </div>
+                    
+                    <div class="enhancement-option" data-enhancement="context">
+                        <div class="enhancement-header">
+                            <div class="enhancement-icon">📝</div>
+                            <div class="enhancement-title">Provide Context</div>
+                        </div>
+                        <p class="enhancement-description">Add background information and constraints</p>
+                        <button class="try-enhancement-btn">Try This Enhancement</button>
+                    </div>
+                    
+                    <div class="enhancement-option" data-enhancement="structure">
+                        <div class="enhancement-header">
+                            <div class="enhancement-icon">📋</div>
+                            <div class="enhancement-title">Request Structure</div>
+                        </div>
+                        <p class="enhancement-description">Ask for a specific format or organization</p>
+                        <button class="try-enhancement-btn">Try This Enhancement</button>
+                    </div>
+                </div>
+                
+                <!-- Enhancement Info -->
+                <div class="enhancement-info" id="enhancementInfo" style="display: none;">
+                    <div class="enhancement-changes">
+                        <h4>What Changed:</h4>
+                        <p id="enhancementDescription"></p>
+                    </div>
+                    <button class="reset-btn" id="resetEnhancement">Reset to Original</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
